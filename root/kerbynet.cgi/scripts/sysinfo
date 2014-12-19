@@ -1,0 +1,14 @@
+#!/bin/sh
+KERNEL=`uname -r`
+CPU=`grep "model name" /proc/cpuinfo |head -1 | cut -d: -f2`
+MHZ=`grep "cpu MHz" /proc/cpuinfo | cut -d: -f2 | head -1 | cut -d. -f1` 
+NCPU=`cat /proc/cpuinfo |egrep ^processor |wc -l`
+LOADAVG=" `awk '{printf "%s %s %s",$1,$2,$3}' </proc/loadavg`"
+MEMORY=`grep "MemTotal" /proc/meminfo |cut -d: -f2`
+UPTIME=`awk '{Days=$1/86400; Sec=$1%86400; Hours=Sec/3600; Sec=Sec%3600 ; Minutes=Sec/60; printf "%d days, %d:%d",Days,Hours,Minutes }' < /proc/uptime`
+
+echo "<tr><td class=Smaller2>CPU ($NCPU)</td><td class=Smaller2 style='color:#2020F0'><b>$CPU${MHZ}MHz</b></td><td width=1% class=Smaller2><a href=# onclick='location.reload(true);'>Refresh</a></td></tr>"
+echo "<tr><td class=Smaller2>Uptime</td><td class=Smaller2>$UPTIME</td><td class=Smaller2></td></tr>"
+echo "<tr><td class=Smaller2 >Load Avg</td><td class=Smaller2>$LOADAVG</td><td class=Smaller2><a href=# onclick='newwin=open(\"kerbynet?STk=<xvar STk>&Action=Render&Object=mrtg_show&Type=System\", \"MRTG\",\"top=200,left=200,width=800,height=480,scrollbars=yes,menubar=no,toolbar=no,statusbar=no\");newwin.focus();'>Graphics</a></td></tr>"
+echo "<tr><td class=Smaller2>Kernel</td><td class=Smaller2>$KERNEL</td><td></td></tr>"
+echo "<tr><td class=Smaller2>Memory</td><td class=Smaller2>$MEMORY</td><td></td></tr>"

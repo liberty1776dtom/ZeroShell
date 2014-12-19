@@ -1,0 +1,4 @@
+#!/bin/bash
+SOCKETS=$(lscpu |grep "^Socket(s):" | awk -F":" '{print $2}'|tr -d " ")
+CORES=$(lscpu |grep "^Core(s) per socket:" | awk -F":" '{print $2}' | tr -d " ")
+echo $((SOCKETS*CORES))

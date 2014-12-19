@@ -1,0 +1,6 @@
+#!/bin/bash
+CPU=`grep "model name" /proc/cpuinfo |head -1 | cut -d: -f2`
+MHZ=`grep "cpu MHz" /proc/cpuinfo | cut -d: -f2 | head -1 | cut -d. -f1`
+NCPU=`cat /proc/cpuinfo |egrep ^processor |wc|awk '{print $1}'`
+echo "CPU ($NCPU) : $CPU $MHZ MHz"
+

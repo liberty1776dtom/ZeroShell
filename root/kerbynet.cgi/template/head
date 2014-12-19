@@ -1,0 +1,42 @@
+<html>
+
+<head><link rel='stylesheet' type='text/css' href='/default.css'>
+<title>Head</title>
+<script>
+
+function AboutView() {
+     var newwin=window.open("kerbynet?STk=<xvar STk>&Action=Render&Object=About","About","top=150,left=200,width=700,height=450,scrollbars=yes,menubar=no,toolbar=no,statusbar=no");
+  newwin.focus();
+}
+function dologout() {
+  //if (confirm("Are you sure you want to close the Admin session?")) {
+     top.body.location="kerbynet?STk=<xvar STk>&Action=Logout";
+  //}
+}
+function doreboot() {
+  if (confirm("Are you sure you want to reboot the system?")) {
+     top.body.location="kerbynet?STk=<xvar STk>&Action=Reboot";
+  }
+}
+function dopoweroff() {
+  if (confirm("Are you sure you want to switch off the system?")) {
+     top.body.location="kerbynet?STk=<xvar STk>&Action=Poweroff";
+  }
+}
+</script>
+</head>
+<body bgcolor="#C6E7F9" topmargin="4" leftmargin="5" text="#000000">
+<table cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+  <tr>
+    <td width="1%" valign=center> 
+    <img border="0" src="/kerbynet/Zeroshell.gif" width="172" height="63"></td>
+    <td valign=top>
+      &nbsp;&nbsp;&nbsp;<font color=#0000c0>Release <xvar +release>.<xvar +patchlevel></font><br>
+      &nbsp;&nbsp;&nbsp;<a href="#" onclick="AboutView()">About</a>
+    </td> 
+    <td align=right valign=bottom><a href="#" onclick="dologout()">Logout</a>&nbsp;&nbsp;<a href="#" onclick="doreboot()">Reboot</a>&nbsp;&nbsp;<a href="#" onclick="dopoweroff()">Shutdown</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="1%" height="58" align=right><iframe name="sysinfo" width="300" height="58" src="/cgi-bin/kerbynet?STk=<xvar STk>&Action=Render&Object=sysinfo">IFRAME not supported</iframe></td>
+  </tr>
+</table>
+</body>
+</html>

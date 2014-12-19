@@ -1,0 +1,6 @@
+#!/bin/bash
+. /etc/kerbynet.conf
+cat /proc/loadavg |awk '{print $2*100}'
+echo 0
+echo 100
+echo NA 
